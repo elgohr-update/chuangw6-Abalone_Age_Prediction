@@ -11,16 +11,12 @@ Options:
 """
 
 from docopt import docopt
-import requests
-import os
-import pandas as pd
 import urllib.request as urllib
 
 opt = docopt(__doc__)
 
 
 def main(url, out_file_path):
-    # python src/download_data.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data --out_file_path=data/raw/abalone.csv
     try:
         urllib.urlretrieve(url, out_file_path)
     except Exception as req:
