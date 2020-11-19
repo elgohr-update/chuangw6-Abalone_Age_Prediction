@@ -36,7 +36,7 @@ git commit -m "Add a commit"
 git push origin <your-branch>
 ```
 
-### Submit a Pull Request for Review
+### Submit a Pull Request for Reviewing
 
 Before sending your pull requests, make sure you followed this list:
 
