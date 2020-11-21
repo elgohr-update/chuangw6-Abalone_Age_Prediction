@@ -1,7 +1,6 @@
 # Abalone Age Prediction
----
   - author: Huanhuan Li, Chuang Wang, Charles Suresh (UBC MDS program)
-## Introduction
+### Introduction
 ---
 In this project, we are going to estimate abalone's age from physical measurements. Abalone is a kind of shellfish that lives in cold water. It has great health benefits based on the fact of low fat and high protein. The nutritional value in different ages is different, as well as economic value. Therefore, telling the age of abalone is an important question for scientists, fish farmers, and customers. The traditional way to determine the age of abalone is from the number of rings. Counting the rings is a time-consuming task since it requires a tedious process involving cutting the shell, staining it, and counting the rings under the microscope. Thus, we consider using other easily obtained measures to predict the age. 
 
@@ -14,18 +13,18 @@ Given that all the features and target are continuous, firstly we plan to explor
 We will apply the best model we selected to the test data set. We will evaluate the performance of the test data set in different metrics. The metrics and interpretation will be reported in our final report.
 
 
-## Usage
+### Usage
 ---
 To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run `run.sh` from the root directory of this project.
 
-## Dependencies
+### Dependencies
 ---
 Please refer to [env-abalone.yml](https://github.com/UBC-MDS/Abalone_Age_Prediction/env-abalone.yml) under the root directory of this project. 
 ### **License**
 ---
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/UBC-MDS/Abalone_Age_Prediction/blob/main/LICENSE)
 
-# References
+### References
 ---
 <div id="refs" class="references">
 
