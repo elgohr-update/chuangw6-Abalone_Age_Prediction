@@ -18,7 +18,7 @@ To replicate the analysis, clone this GitHub repository, install the [dependenci
 
 ## Dependencies
 
-Please refer to [env-abalone.yml](https://github.com/huan-ds/Abalone_Age_Prediction/blob/huan/env-abalone.yml) under the root directory of this project. 
+Please refer to [env-abalone.yml](https://github.com/UBC-MDS/Abalone_Age_Prediction/env-abalone.yml) under the root directory of this project. 
 ## License
 MIT License
 
