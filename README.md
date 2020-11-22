@@ -37,7 +37,7 @@ To replicate the analysis, clone this GitHub repository, install the [dependenci
 Please refer to [env-abalone.yml](/env-abalone.yml) under the root directory of this project.
 Run the following command from the root of this repository to replicate the enviroment for this project.
 
-`conda env create --file env-abalone.yaml`
+`conda env create --file env-abalone.yml`
 ### **License**
 ---
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/UBC-MDS/Abalone_Age_Prediction/blob/main/LICENSE)
