@@ -1,5 +1,9 @@
 # Abalone Age Prediction
-  - author: Huanhuan Li, Chuang Wang, Charles Suresh (UBC MDS program)
+### Author
+---
+- [Huanhuan Li](https://www.linkedin.com/in/huanhuanli1003/), student from [UBC MDS Program]((https://masterdatascience.ubc.ca/)) (2020 - 2021)
+- [Chuang Wang](https://www.linkedin.com/in/chuangw/), student from [UBC MDS Program]((https://masterdatascience.ubc.ca/)) (2020 - 2021)
+- Charles Suresh, student from [UBC MDS Program]((https://masterdatascience.ubc.ca/)) (2020 - 2021)
 ### Project Information
 ---
 
