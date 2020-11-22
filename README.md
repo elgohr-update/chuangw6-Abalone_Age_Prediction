@@ -1,13 +1,22 @@
 # Abalone Age Prediction
-  - author: Huanhuan Li, Chuang Wang, Charles Suresh (UBC MDS program)
-### Introduction
+### Author
 ---
+- [Huanhuan Li](https://www.linkedin.com/in/huanhuanli1003/), student from [UBC MDS Program](https://masterdatascience.ubc.ca/) (2020 - 2021)
+- [Chuang Wang](https://www.linkedin.com/in/chuangw/), student from [UBC MDS Program](https://masterdatascience.ubc.ca/) (2020 - 2021)
+- Charles Suresh, student from [UBC MDS Program](https://masterdatascience.ubc.ca/) (2020 - 2021)
+### Project Information
+---
+
+- **Background**   
 In this project, we are going to estimate abalone's age from physical measurements. Abalone is a kind of shellfish that lives in cold water. It has great health benefits based on the fact of low fat and high protein. The nutritional value in different ages is different, as well as economic value. Therefore, telling the age of abalone is an important question for scientists, fish farmers, and customers. The traditional way to determine the age of abalone is from the number of rings. Counting the rings is a time-consuming task since it requires a tedious process involving cutting the shell, staining it, and counting the rings under the microscope. Thus, we consider using other easily obtained measures to predict the age. 
 
+- **Dataset**  
 The dataset used in this project comes from an original study "The Population Biology of Abalone (_Haliotis_ species) in Tasmania. I. Blacklip Abalone (_H. rubra_) from the North Coast and Islands of Bass Strait", created by Warwick J Nash, Tracy L Sellers, Simon R Talbot, Andrew J Cawthorn and Wes B Ford (1994). It was sourced from the UCI Machine Learning Repository and can be found [here](http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/). Each row in the data set represents an abalone, including the physical measurements(Sex, Length, Diameter, Height, Whole weight, etc.) and the number of rings, which gives the age in years by adding 1.5. The missing values in the original study have been removed and the range of continuous values has been scaled. Please find the detailed information [here](http://archive.ics.uci.edu/ml/datasets/Abalone?pagewanted=all).
 
+- **Preprocessing and EDA**  
 We plan to build a predictive model to answer the question we propose above. Before building the predictive model, to make the target more understandable, we will convert our target "rings" to "age" by adding 1.5. We will split the data into a training set and a test set (split 80%:20%). The data set is clean as the missing values have been removed and the continuous values have been scaled. The features and target variable are all continuous, thus the exploratory data analysis will focus on the distribution of the features and the correlations between the features. Please find the detailed EDA [here](https://github.com/UBC-MDS/Abalone_Age_Prediction/blob/main/src/abalone_eda.ipynb).
 
+- **Plan for the usage of the prediction model** (Future Milestones)        
 Given that all the features and target are continuous, firstly we plan to explore Ridge model, which is a regularized linear regression model. Ridge model can avoid predicting extremely large numbers because the normal age of abalone is smaller than 50. We will apply hyperparameter optimization to choose the best hyperparameter alpha via cross-validation. The prediction will be evaluated by comparing different metrics(r2, MSE, etc.). Another regressor that could potentially perform well is RandomForestRegressor. We can also carry out hyperparameter optimization and choose the best hyperparameter. At last, we will choose the best model.
 
 We will apply the best model we selected to the test data set. We will evaluate the performance of the test data set in different metrics. The metrics and interpretation will be reported in our final report.
@@ -15,11 +24,20 @@ We will apply the best model we selected to the test data set. We will evaluate 
 
 ### Usage
 ---
-To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run `run.sh` from the root directory of this project.
+To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and follow the steps below (the commands below should be run at the root directory of this project.)
 
+- Step 1:   
+`python src/download_data.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data --out_file_path=data/raw/abalone.csv`
+
+- Step 2:   
+  - Open the jupyter notebook file `ablone_eda.ipynb` under `src/` folder
+  - Run the file to see the EDA process.
 ### Dependencies
 ---
-Please refer to [env-abalone.yml](https://github.com/UBC-MDS/Abalone_Age_Prediction/env-abalone.yml) under the root directory of this project. 
+Please refer to [env-abalone.yml](/env-abalone.yml) under the root directory of this project.
+Run the following command from the root of this repository to replicate the enviroment for this project.
+
+`conda env create --file env-abalone.yml`
 ### **License**
 ---
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/UBC-MDS/Abalone_Age_Prediction/blob/main/LICENSE)
