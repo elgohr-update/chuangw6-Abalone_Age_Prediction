@@ -22,16 +22,61 @@ Given that all the features and target are continuous, firstly we plan to explor
 We will apply the best model we selected to the test data set. We will evaluate the performance of the test data set in different metrics. The metrics and interpretation will be reported in our final report.
 
 
-### Usage
+### Usage and 
 ---
-To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and follow the steps below (the commands below should be run at the root directory of this project.)
+To replicate the analysis, 
+1. Clone this GitHub repository
+2. Install the [dependencies](#dependencies) listed below by running the following command    
+   `conda env create --file env-abalone.yml`
+3. Run the shell script    
+   `bash run_all.sh`
 
-- Step 1:   
-`python src/download_data.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data --out_file_path=data/raw/abalone.csv`
 
-- Step 2:   
-  - Open the jupyter notebook file `ablone_eda.ipynb` under `src/` folder
-  - Run the file to see the EDA process.
+### **Flow Chart and Project Organization**
+--- 
+- **Flow Chart**    
+![](img/Analysis_Flow_Chart.png)
+
+- **Project Organization**    
+```
+.
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── data
+│   ├── processed
+│   │   ├── test.csv
+│   │   └── training.csv
+│   └── raw
+│       └── abalone.csv
+├── doc
+│   ├── abalone_age_predict_report.Rmd
+│   ├── abalone_age_predict_report.md
+│   └── abalone_age_predict_report.pdf
+├── env-abalone.yml
+├── results
+│   ├── eda
+│   │   ├── all_vs_age_dist.png
+│   │   ├── corr_plot.png
+│   │   └── sex_vs_age_violin.png
+│   └── ml_model
+│       ├── best_model_quality.sav
+│       ├── best_predict_model.sav
+│       └── hyperparam_tuning.png
+├── run_all.sh
+└── src
+    ├── data_wrangling
+    │   ├── download_data.py
+    │   └── pre_process_abalone_data.py
+    ├── eda
+    │   ├── abalone_eda.ipynb
+    │   └── abalone_eda.py
+    └── ml
+        ├── abalone_fit_predict_model.py
+        └── abalone_test_result.py
+```
+
 ### Dependencies
 ---
 Please refer to [env-abalone.yml](/env-abalone.yml) under the root directory of this project.
