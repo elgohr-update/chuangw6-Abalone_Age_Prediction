@@ -15,11 +15,11 @@ Huanhuan Li, Chuang Wang, Charles Suresh </br>
 
 To predict abalone’s age from physical measurements, we build a
 regression model using a popular type of regularized linear regression
-model Ridge. The model can use the physical measurements(Sex, Length,
+model Ridge. The model can use the physical measurements (Sex, Length,
 Diameter, Height, Whole weight, etc.) to predict the age of abalone. Our
 final Ridge model can predict age in a decent accuracy on an unseen test
 data set, with a *R*<sup>2</sup> score of 0.52 and a mean absolute
-percentage error(MAPE) of 13.71. However, considering the potential
+percentage error (MAPE) of 13.71. However, considering the potential
 economic losses to the stakeholders, we recommend further improvement
 before it is put into the industry.
 
@@ -35,7 +35,7 @@ Andrew J Cawthorn and Wes B Ford (1994). It was sourced from the UCI
 Machine Learning Repository and can be found
 [here](http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/).
 Each row in the data set represents an abalone, including the physical
-measurements(Sex, Length, Diameter, Height, Whole weight, etc.) and the
+measurements (Sex, Length, Diameter, Height, Whole weight, etc.) and the
 number of rings, which gives the age in years by adding 1.5. The missing
 values in the original study have been removed and the range of
 continuous values has been scaled. Please find the detailed information
@@ -61,7 +61,7 @@ following Python packages were used to perform the analysis: docopt
 al. 2017), Scikit-learn (Pedregosa et al. 2011), Numpy (Oliphant 2006),
 Pickle (Van Rossum 2020), Matplotlib (Hunter 2007). The R language
 programming languages (R Core Team 2019), Knitr (Xie 2014) and
-Reticulate(Allaire et al. 2017) were used to generate this report. The
+Reticulate (Allaire et al. 2017) were used to generate this report. The
 code used to perform the analysis and create this report can be found
 here: <https://github.com/UBC-MDS/Abalone_Age_Prediction>.
 
@@ -142,9 +142,9 @@ R-squared was used as the metric as alpha was varied.
 </div>
 
 The final prediction model has a *R*<sup>2</sup> score of 0.52 and a
-mean absolute percentage error(MAPE) of 13.71. Our *R*<sup>2</sup> score
-is not good enough compare to the perfect *R*<sup>2</sup> score of 1,
-which means our prediction has a relatively large variation in the
+mean absolute percentage error (MAPE) of 13.71. Our *R*<sup>2</sup>
+score is not good enough compare to the perfect *R*<sup>2</sup> score of
+1, which means our prediction has a relatively large variation in the
 response variable around its mean. Considering the MAPE score, the model
 has around 13.71% errors on the age prediction. In terms of MAPE score,
 the model performs good based on the test data. However, this model is
