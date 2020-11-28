@@ -55,6 +55,8 @@ To replicate the analysis,
 │   ├── abalone_age_predict_report.md
 │   └── abalone_age_predict_report.pdf
 ├── env-abalone.yml
+├── img
+│   └── Analysis_Flow_Chart.png
 ├── results
 │   ├── eda
 │   │   ├── all_vs_age_dist.png
