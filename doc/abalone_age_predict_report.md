@@ -17,9 +17,10 @@ regression model using a popular type of regularized linear regression
 model Ridge. The model can use the physical measurements(Sex, Length,
 Diameter, Height, Whole weight, etc.) to predict the age of abalone in
 decimal number. Our final Ridge model can predict age in a good accuracy
-on an unseen test data set, with *R*<sup>2</sup> score of …… However,
-considering the potential economic losses to the stakeholders, we
-recommend further improvement before it is put into the industry.
+on an unseen test data set, with *R*<sup>2</sup> score of 0.55, and 13
+mean absolute percentage error (MAPE). However, considering the
+potential economic losses to the stakeholders, we recommend further
+improvement before it is put into the industry.
 
 # Methods
 
@@ -55,13 +56,64 @@ a randomized search on hyperparameters in 5-fold cross-validation with
 
 The Python programming languages (Van Rossum and Drake 2009) and the
 following Python packages were used to perform the analysis: docopt
-(Keleshev 2014), Pandas (McKinney and others 2010), Seaborn(Waskom et
-al. 2017), Scikit-learn(Pedregosa et al. 2011), Numpy(Oliphant 2006),
-Pickle(Van Rossum 2020), Matplotlib(Hunter 2007) The code used to
-perform the analysis and create this report can be found here:
+(Keleshev 2014), Pandas (McKinney and others 2010), Seaborn (Waskom et
+al. 2017), Scikit-learn (Pedregosa et al. 2011), Numpy (Oliphant 2006),
+Pickle (Van Rossum 2020), Matplotlib (Hunter 2007). The R language
+programming languages (R Core Team 2019) and knitr (Xie 2014) were used
+to generate this report. The code used to perform the analysis and
+create this report can be found here:
 <https://github.com/UBC-MDS/Abalone_Age_Prediction>.
 
 # Results & Discussion
+
+To determine which features are useful to predict the target, we explore
+all columns in the train data set. From the correlation heat map below,
+we can see that the shell weight is the feature that is most correlated
+to the target age because the correlation value is largest among all
+features. All numerical features have a positive relationship between
+each other.
+
+<div class="figure">
+
+<img src="../results/eda/corr_plot.png" alt="Figure 1. Correlation of All Abalone Numerical Column." width="100%" />
+<p class="caption">
+Figure 1. Correlation of All Abalone Numerical Column.
+</p>
+
+</div>
+
+To examine the correlation between the target Age and numerical
+features, we take a further step to plot the 2D histogram plot below. We
+can see that the target Age is positively correlated with all the
+numerical features.
+
+<div class="figure">
+
+<img src="../results/eda/all_vs_age_dist.png" alt="Figure 2. Correlation of Abalone Age with Numerical Features." width="100%" />
+<p class="caption">
+Figure 2. Correlation of Abalone Age with Numerical Features.
+</p>
+
+</div>
+
+Then we explore the age distribution conditioning by different Sex. The
+number of instances of Infants, Males and Females are pretty close to
+each other. The mean, median, 25% Quartile, and 75% Quartile of Age for
+Infants are all lower than that for Males and Females. This categorical
+feature is a good indicator to the age.
+
+<div class="figure">
+
+<img src="../results/eda/sex_vs_age_violin.png" alt="Figure 3. Correlation of Abalone Age with Sex." width="50%" />
+<p class="caption">
+Figure 3. Correlation of Abalone Age with Sex.
+</p>
+
+</div>
+
+In summary, after exploring the data, we can clearly see that all
+features have relationship with the target. Thus, we are going to use
+all features as the model input.
 
 # Reference
 
@@ -105,6 +157,14 @@ Research* 12 (Oct): 2825–30.
 
 </div>
 
+<div id="ref-R" class="csl-entry">
+
+R Core Team. 2019. *R: A Language and Environment for Statistical
+Computing*. Vienna, Austria: R Foundation for Statistical Computing.
+<https://www.R-project.org/>.
+
+</div>
+
 <div id="ref-pickle" class="csl-entry">
 
 Van Rossum, Guido. 2020. *The Python Library Reference, Release 3.8.2*.
@@ -125,6 +185,15 @@ Waskom, Michael, Olga Botvinnik, Drew O’Kane, Paul Hobson, Saulius
 Lukauskas, David C Gemperline, Tom Augspurger, et al. 2017.
 *Mwaskom/Seaborn: V0.8.1 (september 2017)* (version v0.8.1). Zenodo.
 <https://doi.org/10.5281/zenodo.883859>.
+
+</div>
+
+<div id="ref-knitr" class="csl-entry">
+
+Xie, Yihui. 2014. “Knitr: A Comprehensive Tool for Reproducible Research
+in R.” In *Implementing Reproducible Computational Research*, edited by
+Victoria Stodden, Friedrich Leisch, and Roger D. Peng. Chapman;
+Hall/CRC. <http://www.crcpress.com/product/isbn/9781466561595>.
 
 </div>
 
