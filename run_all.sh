@@ -32,4 +32,4 @@ python src/ml/abalone_fit_predict_model.py --train=data/processed/training.csv -
 python src/ml/abalone_test_result.py --test=data/processed/test.csv --out_dir=results/ml_model
 
 # 6. knit final report
-Rscript ­e "rmarkdown::render('doc/abalone_age_predict_report.Rmd')"
+Rscript ­e "rmarkdown::render('doc/abalone_age_predict_report.Rmd', 'all')"
