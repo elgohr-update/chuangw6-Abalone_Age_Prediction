@@ -27,34 +27,49 @@ opt = docopt(__doc__)
 
 
 def main(input_file, out_dir):
-    # find the best Ridge model and the hyperparameter tuning result
+    """run all helper functions to find the best model and get the 
+    hyperparameter tuning result
+
+    Parameters
+    ----------
+    input_file : string
+        the path (including file name) to the training dataset
+    out_dir : string
+        the path to store the results
+    """
     best_ridge, result_df = find_best_model(input_file)
 
     # write the serialized best model into a sav file
-    pickle.dump(best_ridge, open(out_dir + "/ridge_pipe.sav", "wb"))
+    pickle.dump(best_ridge, open(out_dir + "/best_predict_model.sav", "wb"))
 
     # save the hyperparameter tuning plot
     plot_save(result_df, out_dir + "/hyperparam_tuning.png")
 
 
 def find_best_model(input_file):
-    raw = pd.read_csv(input_file)
-    train_df = preprocess(raw)
+    """find the best model `Ridge` which is a machine learning (ML) linear 
+    regression model 
+
+    Parameters
+    ----------
+    input_file : string
+        the path (including file name) to the training dataset 
+
+    Returns
+    -------
+    best_ridge, result_df : tuple
+        a tuple that contains the best ridge model object and the tuning 
+        result dataframe
+    """
+    train_df = pd.read_csv(input_file)
     train_df = train_df[train_df["Height"] < 0.6]
     X_train, y_train = train_df.drop(columns=["Age"]), train_df["Age"]
-    ridge_pipe = get_pipeline()
-    return hyperparam_tuning(ridge_pipe, X_train, y_train)
-
-
-def plot_save(result_df, out_dir):
-    result_df.plot(kind="line", y="mean_test_score")
-    plt.xlabel("Hyperparameter Alpha")
-    plt.ylabel("Mean Test Score")
-    plt.savefig(out_dir)
-
-
-def hyperparam_tuning(pipe, X_train, y_train):
-    param_dist = {"ridge__alpha": 2.0 ** np.arange(-5, 5, 1)}
+    
+    # construct a ML pipeline
+    pipe = get_pipeline()
+    
+    # tune the hyperparameter alpha using RandomizedSearchCV
+    param_dist = {"ridge__alpha": 2.0 ** np.arange(-10, 10, 1)}
     random_search = RandomizedSearchCV(
         pipe, param_distributions=param_dist, n_jobs=-1, n_iter=10, cv=5, scoring="r2",
     )
@@ -64,29 +79,21 @@ def hyperparam_tuning(pipe, X_train, y_train):
         pd.DataFrame(random_search.cv_results_)[
             ["param_ridge__alpha", "mean_test_score", "rank_test_score",]
         ]
-        .set_index("param_ridge__alpha")
+        .set_index("rank_test_score")
         .sort_index()
     )
     return best_ridge, result_df
 
 
-def preprocess(raw):
-    raw.columns = [
-        "Sex",
-        "Length",
-        "Diameter",
-        "Height",
-        "Whole Weight",
-        "Shucked Weight",
-        "Viscera Weight",
-        "Shell Weight",
-        "Age",
-    ]
-    raw["Age"] = raw["Age"] + 1.5
-    return raw
-
-
 def get_pipeline():
+    """construct a ML pipeline which contains preprocessors for different 
+    features and a ML model
+
+    Returns
+    -------
+    sklearn.pipeline.Pipeline
+        ML pipeline
+    """
     categorical_features = ["Sex"]
     numerical_features = [
         "Length",
@@ -102,6 +109,36 @@ def get_pipeline():
     )
 
     return make_pipeline(preprocessor, Ridge())
+
+
+def plot_save(result_df, out_dir):
+    """plot the hyperparameter result and save it in the result folder
+
+    Parameters
+    ----------
+    result_df : pandas.core.frame.DataFrame
+        a dataframe containing the hyperparameter result
+    out_dir : string
+        the path to store the results
+    """
+    result_df.plot(kind="line", y="mean_test_score")
+    best_alpha = result_df.loc[1, "param_ridge__alpha"]
+    best_score = result_df.loc[1, "mean_test_score"]
+    plt.xlabel("Hyperparameter Alpha")
+    plt.ylabel("Mean Test Score")
+    plt.annotate(
+        f"Best R^2 score: {best_score:.2f} where 'alpha' = {best_alpha:.1f}",
+        xy=(best_alpha, best_score),
+        xytext=(30, 50),
+        va="top",
+        xycoords="data",
+        textcoords="offset points",
+        bbox=dict(boxstyle="round4,pad=.5", fc="0.9"),
+        arrowprops=dict(
+            arrowstyle="->", connectionstyle="angle,angleA=0,angleB=80,rad=20"
+        ),
+    )
+    plt.savefig(out_dir)
 
 
 if __name__ == "__main__":
