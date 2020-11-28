@@ -34,7 +34,7 @@ To replicate the analysis,
 ### **Flow Chart and Project Organization**
 --- 
 - **Flow Chart**    
-![](img/Analysis_Flow_Chart.png)
+![](img/ml_analysis_flow_chart.png)
 
 - **Project Organization**    
 ```
