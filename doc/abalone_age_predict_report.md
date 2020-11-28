@@ -8,6 +8,7 @@ Huanhuan Li, Chuang Wang, Charles Suresh </br>
     -   [Data](#data)
     -   [Analysis](#analysis)
 -   [Results & Discussion](#results-discussion)
+-   [Results & Discussion](#results-discussion-1)
 -   [Reference](#reference)
 
 # Summary
@@ -15,12 +16,12 @@ Huanhuan Li, Chuang Wang, Charles Suresh </br>
 To predict abalone’s age from physical measurements, we build a
 regression model using a popular type of regularized linear regression
 model Ridge. The model can use the physical measurements(Sex, Length,
-Diameter, Height, Whole weight, etc.) to predict the age of abalone in
-decimal number. Our final Ridge model can predict age in a good accuracy
-on an unseen test data set, with *R*<sup>2</sup> score of 0.55, and 13
-mean absolute percentage error (MAPE). However, considering the
-potential economic losses to the stakeholders, we recommend further
-improvement before it is put into the industry.
+Diameter, Height, Whole weight, etc.) to predict the age of abalone. Our
+final Ridge model can predict age in a decent accuracy on an unseen test
+data set, with a *R*<sup>2</sup> score of 0.52 and a mean absolute
+percentage error(MAPE) of 13.71. However, considering the potential
+economic losses to the stakeholders, we recommend further improvement
+before it is put into the industry.
 
 # Methods
 
@@ -51,7 +52,7 @@ target “age” is converted from the “rings” in the original data set by
 adding 1.5. Before fitting the model, we exclude 1 outlier with
 extremely large height, and apply a standard scale transformation on
 numerical features. The model parameter *a**l**p**h**a* was chosen using
-a randomized search on hyperparameters in 5-fold cross-validation with
+a randomized search on hyperparameters in 5-fold cross-validation, with
 *R*<sup>2</sup> as the evaluation metric.
 
 The Python programming languages (Van Rossum and Drake 2009) and the
@@ -59,19 +60,19 @@ following Python packages were used to perform the analysis: docopt
 (Keleshev 2014), Pandas (McKinney and others 2010), Seaborn (Waskom et
 al. 2017), Scikit-learn (Pedregosa et al. 2011), Numpy (Oliphant 2006),
 Pickle (Van Rossum 2020), Matplotlib (Hunter 2007). The R language
-programming languages (R Core Team 2019) and knitr (Xie 2014) were used
-to generate this report. The code used to perform the analysis and
-create this report can be found here:
-<https://github.com/UBC-MDS/Abalone_Age_Prediction>.
+programming languages (R Core Team 2019), Knitr (Xie 2014) and
+Reticulate(Allaire et al. 2017) were used to generate this report. The
+code used to perform the analysis and create this report can be found
+here: <https://github.com/UBC-MDS/Abalone_Age_Prediction>.
 
 # Results & Discussion
 
 To determine which features are useful to predict the target, we explore
 all columns in the train data set. From the correlation heat map below,
 we can see that the shell weight is the feature that is most correlated
-to the target age because the correlation value is largest among all
-features. All numerical features have a positive relationship between
-each other.
+to the target Age because the correlation value is the largest among all
+features. All numerical features have a positive relationship with each
+other.
 
 <div class="figure">
 
@@ -83,9 +84,15 @@ Figure 1. Correlation of All Abalone Numerical Column.
 </div>
 
 To examine the correlation between the target Age and numerical
-features, we take a further step to plot the 2D histogram plot below. We
+features, we take a further step to plot the histogram plot below. We
 can see that the target Age is positively correlated with all the
-numerical features.
+numerical features. From the distributions, we can see that all feature
+values are not normally distributed. There are some outliers for the
+Height value, but we will exclude outliers from the training dataset
+before building models. The feature “Whole Weight” distributes from 0 to
+2.5, which is a wider range than other features. Other features
+distribute from 0 to around 1. Thus, we are going to standardize the
+numerical values before fitting the model.
 
 <div class="figure">
 
@@ -98,9 +105,9 @@ Figure 2. Correlation of Abalone Age with Numerical Features.
 
 Then we explore the age distribution conditioning by different Sex. The
 number of instances of Infants, Males and Females are pretty close to
-each other. The mean, median, 25% Quartile, and 75% Quartile of Age for
+each other. The mean, median, 25% Quartile and 75% Quartile of Age for
 Infants are all lower than that for Males and Females. This categorical
-feature is a good indicator to the age.
+feature is a good indicator to age.
 
 <div class="figure">
 
@@ -115,9 +122,62 @@ In summary, after exploring the data, we can clearly see that all
 features have relationship with the target. Thus, we are going to use
 all features as the model input.
 
+# Results & Discussion
+
+We chose to use Ridge model to solve the regression problem. To find the
+best hyperparameter, we randomly search within the defined search space
+of “alpha” using 5-fold cross-validation. The evaluation metric used in
+the cross-validation is *R*<sup>2</sup> score, which indicates the
+variation in the response variable around its mean. The best mean
+validate score is 0.54 where ‘alpha’ equals 1.
+
+<div class="figure">
+
+<img src="../results/ml_model/hyperparam_tuning.png" alt="Figure 4. Results from 5-fold cross validation to choose alpha. R-squared was used as the metric as alpha was varied." width="50%" />
+<p class="caption">
+Figure 4. Results from 5-fold cross validation to choose alpha.
+R-squared was used as the metric as alpha was varied.
+</p>
+
+</div>
+
+The final prediction model has a *R*<sup>2</sup> score of 0.52 and a
+mean absolute percentage error(MAPE) of 13.71. Our *R*<sup>2</sup> score
+is not good enough compare to the perfect *R*<sup>2</sup> score of 1,
+which means our prediction has a relatively large variation in the
+response variable around its mean. Considering the MAPE score, the model
+has around 13.71% errors on the age prediction. In terms of MAPE score,
+the model performs good based on the test data. However, this model is
+not good enough to implement in industry or other fields.
+
+|       | mape\_error | r\_squared\_score |
+|:------|------------:|------------------:|
+| Ridge |    13.71356 |         0.5193807 |
+
+Table 1. Model Performance on Test Data
+
+We consider that the physical measurements might not be linearly
+increased by age. The true underlying relationship is more complex than
+a linear relationship considering multiple features. We suggest the
+following methods to enhance the model performance for further
+improvement. First, we could treat the age prediction as a
+classification problem by binning the age into several age classes.
+Second, we could further investigate the colinear features (features
+that are highly correlated with one another), or the outliers in each
+features. We could also apply other feature engineering techniques, such
+as polynomial regression, to find the better fit.
+
 # Reference
 
 <div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-reticulate" class="csl-entry">
+
+Allaire, JJ, Kevin Ushey, Yuan Tang, and Dirk Eddelbuettel. 2017.
+*Reticulate: R Interface to Python*.
+<https://github.com/rstudio/reticulate>.
+
+</div>
 
 <div id="ref-hunter2007matplotlib" class="csl-entry">
 
