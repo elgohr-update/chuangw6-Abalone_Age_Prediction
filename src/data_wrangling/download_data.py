@@ -3,7 +3,7 @@
 
 """Downloads data from the web to a local filepath as a csv file format.
 
-Usage: src/down_data.py --url=<url> --out_file_path=<out_file_path>
+Usage: src/data_wrangling/down_data.py --url=<url> --out_file_path=<out_file_path>
 
 Options:
 --url=<url>              URL from where to download the data (must be in standard csv format)
