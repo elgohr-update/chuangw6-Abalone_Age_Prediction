@@ -51,6 +51,7 @@ To replicate the analysis,
 │   └── raw
 │       └── abalone.csv
 ├── doc
+|   ├── abalone_age_predict_report.html
 │   ├── abalone_age_predict_report.Rmd
 │   ├── abalone_age_predict_report.md
 │   └── abalone_age_predict_report.pdf
