@@ -19,12 +19,44 @@ import matplotlib.pyplot as plt
 
 opt = docopt(__doc__)
 
+
+def main(train, out_dir):
+
+    train_data = pd.read_csv(train, index_col=0)
+
+    # add units to column titles
+    train_data.columns = [
+        "Sex",
+        "Length (mm)",
+        "Diameter (mm)",
+        "Height (mm)",
+        "Whole Weight (g)",
+        "Shucked Weight (g)",
+        "Viscera Weight (g)",
+        "Shell Weight (g)",
+        "Age (Years)",
+    ]
+
+    if not os.path.exists(out_dir):
+        os.makedirs(out_dir)
+
+    # Violin PLot of Age conditioned on 'sex'
+    violin_plot(train_data, out_dir)
+
+    # Histogram of Numerical Features
+    histogram_plot(train_data, out_dir)
+
+    # Correlation Plot
+    correlation_plot(train_data, out_dir)
+
+
 def violin_plot(train_data, out_dir):
     # Violin PLot of Age conditioned on 'sex'
     fig, ax = plt.subplots()
     sns.violinplot(y="Sex", x="Age (Years)", data=train_data, inner="quartile")
-    fig.savefig(out_dir + '/sex_vs_age_violin.png', dpi = 200)
+    fig.savefig(out_dir + "/sex_vs_age_violin.png", dpi=200)
     plt.close(fig)
+
 
 def histogram_plot(train_data, out_dir):
     # Histogram of Numerical Features
@@ -32,16 +64,14 @@ def histogram_plot(train_data, out_dir):
     fig, axs = plt.subplots(nrows=2, ncols=4)
     plt.subplots_adjust(left=0.04, right=0.975, top=0.95, bottom=0.075)
     sns.set_theme(style="whitegrid")
-    sns.histplot(train_data, x="Length (mm)", kde=True, bins=15, ax=axs[0, 0])
-    sns.histplot(train_data, x="Diameter (mm)", kde=True, bins=15, ax=axs[0, 1])
-    sns.histplot(train_data, x="Height (mm)", kde=True, bins=20, ax=axs[0, 2])
-    sns.histplot(train_data, x="Whole Weight (g)", kde=True, bins=15, ax=axs[0, 3])
-    sns.histplot(train_data, x="Shucked Weight (g)", kde=True, bins=15, ax=axs[1, 0])
-    sns.histplot(train_data, x="Viscera Weight (g)", kde=True, bins=15, ax=axs[1, 1])
-    sns.histplot(train_data, x="Shell Weight (g)", kde=True, bins=15, ax=axs[1, 2])
+
+    for i, column in enumerate(train_data.drop(columns=["Sex"]).columns):
+        sns.histplot(train_data[column], kde=True, bins=15, ax=axs[(i // 4, i % 4)])
+
     fig.delaxes(axs[1, 3])
-    plt.savefig(out_dir + '/all_vs_age_dist.png', dpi = 65)
+    plt.savefig(out_dir + "/all_vs_age_dist.png", dpi=65)
     plt.close(fig)
+
 
 def correlation_plot(train_data, out_dir):
     # Correlation Plot
@@ -58,37 +88,9 @@ def correlation_plot(train_data, out_dir):
         cmap="Spectral",
         linewidths=1,
     )
-    plt.savefig(out_dir + '/corr_plot.png', dpi = 200)
+    plt.savefig(out_dir + "/corr_plot.png", dpi=200)
     plt.close(fig)
 
-def main(train, out_dir):
-  
-    train_data = pd.read_csv(train, index_col = 0)
-    
-    # add units to column titles
-    train_data.columns = [
-        "Sex",
-        "Length (mm)",
-        "Diameter (mm)",
-        "Height (mm)",
-        "Whole Weight (g)",
-        "Shucked Weight (g)",
-        "Viscera Weight (g)",
-        "Shell Weight (g)",
-        "Age (Years)",
-    ]
-    
-    if not os.path.exists(out_dir):
-      os.makedirs(out_dir)
-    
-    # Violin PLot of Age conditioned on 'sex'
-    violin_plot(train_data, out_dir)
-    
-    # Histogram of Numerical Features
-    histogram_plot(train_data, out_dir)
-    
-    # Correlation Plot
-    correlation_plot(train_data, out_dir)
 
 if __name__ == "__main__":
     main(opt["--train"], opt["--out_dir"])
