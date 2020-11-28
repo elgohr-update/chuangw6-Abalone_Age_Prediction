@@ -14,5 +14,8 @@ python src/data_wrangling/pre_process_abalone_data.py --input=data/raw/abalone.c
 # run EDA process
 python src/eda/abalone_eda.py --train=data/processed/training.csv --out_dir=results/eda
 
-# train ML model and plot hyperparameter tuning result
+# train the ML model and plot hyperparameter tuning result
 python src/ml/abalone_fit_predict_model.py --train=data/processed/training.csv --out_dir=results/ml_model
+
+# test the ML model on the test dataset and store the scores
+python src/ml/abalone_test_result.py --test=data/processed/test.csv --out_dir=results/ml_model
