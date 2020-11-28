@@ -37,7 +37,8 @@ def main(input_file, out_dir):
     out_dir : string
         the path to store the results
     """
-    best_ridge, result_df = find_best_model(input_file)
+    train_df = pd.read_csv(input_file)
+    best_ridge, result_df = find_best_model(train_df)
 
     # write the serialized best model into a sav file
     pickle.dump(best_ridge, open(out_dir + "/best_predict_model.sav", "wb"))
@@ -46,7 +47,7 @@ def main(input_file, out_dir):
     plot_save(result_df, out_dir + "/hyperparam_tuning.png")
 
 
-def find_best_model(input_file):
+def find_best_model(train_df):
     """find the best model `Ridge` which is a machine learning (ML) linear 
     regression model 
 
@@ -61,7 +62,6 @@ def find_best_model(input_file):
         a tuple that contains the best ridge model object and the tuning 
         result dataframe
     """
-    train_df = pd.read_csv(input_file)
     train_df = train_df[train_df["Height"] < 0.6]
     X_train, y_train = train_df.drop(columns=["Age"]), train_df["Age"]
 
