@@ -36,6 +36,8 @@ To replicate the analysis,
 - **Flow Chart**    
 ![](img/Analysis_Flow_Chart.png)
 
+> **The scripts and R markdown rendering can be automated in the pipeline written in the [`run_all.sh`](/run_all.sh) shell script.**
+
 - **Project Organization**    
 ```
 .

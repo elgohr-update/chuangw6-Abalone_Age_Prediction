@@ -133,7 +133,7 @@ def plot_save(result_df, out_dir):
     plt.xlabel("Hyperparameter Alpha")
     plt.ylabel("Mean Test Score")
     plt.annotate(
-        f"Best R^2 score: {best_score:.2f} where 'alpha' = {best_alpha:.1f}",
+        f"Best R^2 score: {best_score:.4f} where 'alpha' = {best_alpha:.1f}",
         xy=(best_alpha, best_score),
         xytext=(30, 50),
         va="top",
