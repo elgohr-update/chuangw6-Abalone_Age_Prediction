@@ -22,7 +22,7 @@ Given that all the features and target are continuous, firstly we plan to explor
 We will apply the best model we selected to the test data set. We will evaluate the performance of the test data set in different metrics. The metrics and interpretation will be reported in our final report.
 
 
-### Usage and 
+### Usage 
 ---
 To replicate the analysis, 
 1. Clone this GitHub repository
