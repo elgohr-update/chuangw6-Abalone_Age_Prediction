@@ -64,14 +64,20 @@ def find_best_model(input_file):
     train_df = pd.read_csv(input_file)
     train_df = train_df[train_df["Height"] < 0.6]
     X_train, y_train = train_df.drop(columns=["Age"]), train_df["Age"]
-    
+
     # construct a ML pipeline
     pipe = get_pipeline()
-    
+
     # tune the hyperparameter alpha using RandomizedSearchCV
     param_dist = {"ridge__alpha": 2.0 ** np.arange(-10, 10, 1)}
     random_search = RandomizedSearchCV(
-        pipe, param_distributions=param_dist, n_jobs=-1, n_iter=10, cv=5, scoring="r2",
+        pipe,
+        param_distributions=param_dist,
+        n_jobs=-1,
+        n_iter=10,
+        cv=5,
+        scoring="r2",
+        random_state=2020,
     )
     random_search.fit(X_train, y_train)
     best_ridge = random_search.best_estimator_
@@ -138,6 +144,7 @@ def plot_save(result_df, out_dir):
             arrowstyle="->", connectionstyle="angle,angleA=0,angleB=80,rad=20"
         ),
     )
+    plt.plot(best_alpha, best_score, "g*", color="red")
     plt.savefig(out_dir)
 
 
