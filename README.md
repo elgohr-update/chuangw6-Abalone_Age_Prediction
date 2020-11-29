@@ -52,13 +52,13 @@ To replicate the analysis,
 │   └── raw
 │       └── abalone.csv
 ├── doc
-|   ├── abalone_age_predict_report.html
 │   ├── abalone_age_predict_report.Rmd
+│   ├── abalone_age_predict_report.html
 │   ├── abalone_age_predict_report.md
-│   └── abalone_age_predict_report.pdf
+│   └── abalone_age_refs.bib
 ├── env-abalone.yml
 ├── img
-│   └── Analysis_Flow_Chart.png
+│   └── project_flow_chart.png
 ├── results
 │   ├── eda
 │   │   ├── all_vs_age_dist.png
