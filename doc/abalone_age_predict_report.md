@@ -1,7 +1,7 @@
 Predicting abalone age from physical measurements
 ================
 Huanhuan Li, Chuang Wang, Charles Suresh </br>
-2020/11/28 (updated: 2020-11-28)
+2020/11/28 (updated: 2020-11-29)
 
 -   [Summary](#summary)
 -   [Methods](#methods)
@@ -20,8 +20,8 @@ Diameter, Height, Whole weight, etc.) to predict the age of abalone. Our
 final Ridge model can predict age in a decent accuracy on an unseen test
 data set, with a *R*<sup>2</sup> score of 0.52 and a mean absolute
 percentage error (MAPE) of 13.71. However, considering the potential
-economic losses to the stakeholders, we recommend further improvement
-before it is put into the industry.
+economic losses to the stakeholders (Cook and Gordon 2010), we recommend
+further improvement before it is put into the industry.
 
 # Methods
 
@@ -32,7 +32,7 @@ Population Biology of Abalone (*Haliotis* species) in Tasmania. I.
 Blacklip Abalone (*H. rubra*) from the North Coast and Islands of Bass
 Strait,” created by Warwick J Nash, Tracy L Sellers, Simon R Talbot,
 Andrew J Cawthorn and Wes B Ford (1994). It was sourced from the UCI
-Machine Learning Repository and can be found
+Machine Learning Repository (Dua and Graff 2017) and can be found
 [here](http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/).
 Each row in the data set represents an abalone, including the physical
 measurements (Sex, Length, Diameter, Height, Whole weight, etc.) and the
@@ -163,9 +163,10 @@ following methods to enhance the model performance for further
 improvement. First, we could treat the age prediction as a
 classification problem by binning the age into several age classes.
 Second, we could further investigate the colinear features (features
-that are highly correlated with one another), or the outliers in each
-features. We could also apply other feature engineering techniques, such
-as polynomial regression, to find the better fit.
+that are highly correlated with one another (Kiers and Smilde 2007)), or
+the outliers in each features. We could also apply other feature
+engineering techniques, such as polynomial regression, to find the
+better fit.
 
 # Reference
 
@@ -176,6 +177,22 @@ as polynomial regression, to find the better fit.
 Allaire, JJ, Kevin Ushey, Yuan Tang, and Dirk Eddelbuettel. 2017.
 *Reticulate: R Interface to Python*.
 <https://github.com/rstudio/reticulate>.
+
+</div>
+
+<div id="ref-abalone" class="csl-entry">
+
+Cook, Peter A., and H. Roy Gordon. 2010. “<span class="nocase">World
+Abalone Supply, Markets, and Pricing</span>.” *Journal of Shellfish
+Research* 29 (3): 569–71. <https://doi.org/10.2983/035.029.0303>.
+
+</div>
+
+<div id="ref-Dua2019" class="csl-entry">
+
+Dua, Dheeru, and Casey Graff. 2017. “UCI Machine Learning Repository.”
+University of California, Irvine, School of Information; Computer
+Sciences. <http://archive.ics.uci.edu/ml>.
 
 </div>
 
@@ -190,6 +207,14 @@ Hunter, John D. 2007. “Matplotlib: A 2d Graphics Environment.”
 
 Keleshev, Vladimir. 2014. *Docopt: Command-Line Interface Description
 Language*. <https://github.com/docopt/docopt>.
+
+</div>
+
+<div id="ref-kiers2007comparison" class="csl-entry">
+
+Kiers, Henk AL, and Age K Smilde. 2007. “A Comparison of Various Methods
+for Multivariate Regression with Highly Collinear Variables.”
+*Statistical Methods and Applications* 16 (2): 193–228.
 
 </div>
 
