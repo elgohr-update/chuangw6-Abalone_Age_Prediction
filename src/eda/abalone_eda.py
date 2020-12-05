@@ -115,7 +115,7 @@ def histogram_plot(train_data, out_dir):
     sns.set_theme(style="whitegrid")
 
     for i, column in enumerate(train_data.drop(columns=["Sex"]).columns):
-        sns.histplot(train_df1[column], kde=True, bins=15, ax=axs[(i // 3, i % 3)])
+        sns.histplot(train_df[column], kde=True, bins=15, ax=axs[(i // 3, i % 3)])
 
     fig.delaxes(axs[2, 2])
     plt.savefig(out_dir + "/all_vs_age_dist.png", dpi=90)
