@@ -83,6 +83,7 @@ def violin_plot(train_data, out_dir):
     """
     fig, ax = plt.subplots()
     sns.violinplot(y="Sex", x="Age (Years)", data=train_data, inner="quartile")
+    ax.set_yticklabels(["Infant", "Male", "Female"])
     fig.savefig(out_dir + "/sex_vs_age_violin.png", dpi=200)
     plt.close(fig)
 
@@ -107,17 +108,17 @@ def histogram_plot(train_data, out_dir):
     --------
     >>> histogram_plot(df, 'src/eda')
     """
-    
-    sns.set(rc={"figure.figsize": (30, 12)}, font_scale=1.25)
-    fig, axs = plt.subplots(nrows=2, ncols=4)
+
+    sns.set(rc={"figure.figsize": (30, 20)}, font_scale=1.8)
+    fig, axs = plt.subplots(nrows=3, ncols=3)
     plt.subplots_adjust(left=0.04, right=0.975, top=0.95, bottom=0.075)
     sns.set_theme(style="whitegrid")
 
     for i, column in enumerate(train_data.drop(columns=["Sex"]).columns):
-        sns.histplot(train_data[column], kde=True, bins=15, ax=axs[(i // 4, i % 4)])
+        sns.histplot(train_df1[column], kde=True, bins=15, ax=axs[(i // 3, i % 3)])
 
-    fig.delaxes(axs[1, 3])
-    plt.savefig(out_dir + "/all_vs_age_dist.png", dpi=65)
+    fig.delaxes(axs[2, 2])
+    plt.savefig(out_dir + "/all_vs_age_dist.png", dpi=90)
     plt.close(fig)
 
 
