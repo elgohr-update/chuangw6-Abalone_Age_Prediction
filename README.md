@@ -46,6 +46,7 @@ To replicate the analysis,
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── LICENSE
+├── Makefile
 ├── README.md
 ├── data
 │   ├── processed
@@ -70,7 +71,6 @@ To replicate the analysis,
 │       ├── best_model_quality.sav
 │       ├── best_predict_model.sav
 │       └── hyperparam_tuning.png
-├── run_all.sh
 └── src
     ├── data_wrangling
     │   ├── download_data.py
