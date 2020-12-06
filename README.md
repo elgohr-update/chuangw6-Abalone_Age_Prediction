@@ -23,13 +23,14 @@ The final report can be found [here](https://github.com/UBC-MDS/Abalone_Age_Pred
 
 ### Usage 
 ---
-To replicate the analysis, 
+To replicate the analysis,    
 1. Clone this GitHub repository.
 2. Install the [dependencies](#dependencies) listed below by running the following command:  
    `conda env create --file env-abalone.yml`
-3. Run the following command at the terminal from the root directory of this project:                    
+3. The project root directory contains a [Makefile](Makefile) which can automate the analysis pipeline and render the final report by running all commands.
+   - To replicate the whole analysis, run the following command at the terminal from the root directory of this project:                      
    `make all`                       
-   To reset the repo to a clean state, with no intermediate or results files, run the following command at the terminal from the root directory of this project:                    
+   - To "undo" the analysis, clean state and remove intermediate or results files, run the following command at the terminal from the root directory of this project:                      
    `make clean`   
 
 
@@ -38,7 +39,7 @@ To replicate the analysis,
 - **Flow Chart**    
 ![](img/project_flow_chart.png)
 
-> **The scripts and R markdown rendering can be automated in the pipeline written in the [`Makefile`](/Makefile).**
+> ***The whole analysis process including running all scripts and rendering R markdown can be automated in the pipeline written in the [`Makefile`](Makefile).***
 
 - **Project Organization**    
 ```
@@ -46,6 +47,7 @@ To replicate the analysis,
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── LICENSE
+├── Makefile
 ├── README.md
 ├── data
 │   ├── processed
@@ -70,7 +72,6 @@ To replicate the analysis,
 │       ├── best_model_quality.sav
 │       ├── best_predict_model.sav
 │       └── hyperparam_tuning.png
-├── run_all.sh
 └── src
     ├── data_wrangling
     │   ├── download_data.py

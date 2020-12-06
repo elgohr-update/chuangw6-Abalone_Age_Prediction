@@ -8,9 +8,12 @@
 
 # Purpose:
 # ------------
-# This driver script runs all the scripts (.py files) and the final report 
-# (.Rmd) file from downloading raw data, preprocessing data, EDA, training and
-# testing machine learning model, and finally generating report.
+# This make file automates the whole analysis pipeline by running all the 
+# scripts (.py files) and rendering the final report (.Rmd) file.
+# 
+# The pipeline includes downloading raw data, preprocessing data, EDA, training 
+# and testing machine learning model, and finally generating report in html, 
+# markdown format.
 # 
 # Usage:
 # -------------------
