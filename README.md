@@ -111,11 +111,6 @@ Warwick J Nash, Tracy L Sellers, Simon R Talbot, Andrew J Cawthorn and Wes B For
 "The Population Biology of Abalone (_Haliotis_ species) in Tasmania. I. Blacklip Abalone (_H. rubra_) from the North Coast and Islands of Bass Strait",
 Sea Fisheries Division, Technical Report No. 48 (ISSN 1034-3288)
 
-- Sam Waugh (1995) "Extending and benchmarking Cascade-Correlation", PhD thesis, Computer Science Department, University of Tasmania.
-[Web Link]
-
-- David Clark, Zoltan Schreter, Anthony Adams "A Quantitative Comparison of Dystal and Backpropagation", submitted to the Australian Conference on Neural Networks (ACNN'96).
-
 </div>
 
 </div>
