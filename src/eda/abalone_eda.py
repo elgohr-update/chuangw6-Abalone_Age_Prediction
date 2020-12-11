@@ -145,7 +145,7 @@ def correlation_plot(train_data, out_dir):
     sns.set(rc={"figure.figsize": (15, 10)}, font_scale=1.25)
     fig, ax = plt.subplots()
     plt.subplots_adjust(left=0.15, right=1, top=0.95, bottom=0.2)
-    num_data = train_data[list(train_data.columns)[1:]]
+    num_data = train_data.drop(columns=["Sex"])
     sns.heatmap(
         num_data.corr(),
         annot=True,
