@@ -28,18 +28,11 @@ RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_6
 # put anaconda python in path
 ENV PATH="/opt/conda/bin:${PATH}"
 
-# install docopt python package
+# install docopt, matplotlib, scikit-learn, pandas, seaborn python package
 RUN /opt/conda/bin/conda install -y -c anaconda docopt \
     matplotlib \
     pandas \
     scikit-learn>=0.23 \
     seaborn
-
-# install matplotlib, scikit-learn, pandas, seaborn python packages
-# RUN /opt/conda/bin/conda install -c conda-forge \
-#     matplotlib \
-#     pandas \
-#     scikit-learn>=0.23 \
-#     seaborn
 
 RUN /opt/conda/bin/conda update -y --all
