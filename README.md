@@ -23,29 +23,31 @@ The final report can be found [here](https://github.com/UBC-MDS/Abalone_Age_Pred
 
 ### Usage 
 ---
-To replicate the analysis,    
-1. Clone this GitHub repository.
-2. Install the [dependencies](#dependencies) listed below by running the following command:  
-   `conda env create --file env-abalone.yml`
-3. The project root directory contains a [Makefile](Makefile) which can automate the analysis pipeline and render the final report by running all commands.
-   - To replicate the whole analysis, run the following command at the terminal from the root directory of this project:                      
-   `make all`                       
-   - To "undo" the analysis, clean state and remove intermediate or results files, run the following command at the terminal from the root directory of this project:                      
-   `make clean`   
+To replicate the analysis,  
 
+1. Clone this GitHub repository.  
+2. Navigate to the root directory of this repository.
+3. Make sure Docker is installed in your device. (You can install Docker [here](https://docs.docker.com/get-docker/).)
+4. Pull the [docker image](https://hub.docker.com/r/chuangw/abalone_age_prediction) which contains the software and libraries/packages needed to run abalone age prediction Machine Learning (ML) pipeline.   
+   > `docker pull chuangw/abalone_age_prediction:latest`
+5. To run this analysis using Docker, type the following (filling in PATH_ON_YOUR_COMPUTER with the absolute path to the root of this project on your computer).   
+   > `docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/rstudio/Abalone_Age_Prediction chuangw/abalone_age_predictor make -C /home/rstudio/Abalone_Age_Prediction all`
+6. To clean up the analysis, type:    
+   > `docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/rstudio/Abalone_Age_Prediction chuangw/abalone_age_predictor make -C /home/rstudio/Abalone_Age_Prediction clean`
 
 ### **Flow Chart and Project Organization**
 --- 
 - **Flow Chart**    
-![](img/project_flow_chart.png)
+![](img/out.png)
 
-> ***The whole analysis process including running all scripts and rendering R markdown can be automated in the pipeline written in the [`Makefile`](Makefile).***
+> ***The whole analysis process including running all scripts and rendering R markdown is automated in the pipeline written in the [`Makefile`](Makefile). And this can be run using Docker (see above).***
 
 - **Project Organization**    
 ```
 .
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
+├── Dockerfile
 ├── LICENSE
 ├── Makefile
 ├── README.md
@@ -62,6 +64,8 @@ To replicate the analysis,
 │   └── abalone_age_refs.bib
 ├── env-abalone.yml
 ├── img
+│   ├── out.png
+│   ├── output.dot
 │   └── project_flow_chart.png
 ├── results
 │   ├── eda
@@ -106,11 +110,6 @@ Run the following command from the root of this repository to replicate the envi
 Warwick J Nash, Tracy L Sellers, Simon R Talbot, Andrew J Cawthorn and Wes B Ford (1994)
 "The Population Biology of Abalone (_Haliotis_ species) in Tasmania. I. Blacklip Abalone (_H. rubra_) from the North Coast and Islands of Bass Strait",
 Sea Fisheries Division, Technical Report No. 48 (ISSN 1034-3288)
-
-- Sam Waugh (1995) "Extending and benchmarking Cascade-Correlation", PhD thesis, Computer Science Department, University of Tasmania.
-[Web Link]
-
-- David Clark, Zoltan Schreter, Anthony Adams "A Quantitative Comparison of Dystal and Backpropagation", submitted to the Australian Conference on Neural Networks (ACNN'96).
 
 </div>
 
