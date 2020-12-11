@@ -1,15 +1,15 @@
 Predicting abalone age from physical measurements
 ================
 Huanhuan Li, Chuang Wang, Charles Suresh </br>
-2020/11/28 (updated: 2020-12-05)
+2020/11/28 (updated: 2020-12-11)
 
--   [Summary](#summary)
--   [Methods](#methods)
-    -   [Data](#data)
-    -   [Analysis](#analysis)
--   [Results & Discussion](#results-discussion)
--   [Results & Discussion](#results-discussion-1)
--   [Reference](#reference)
+  - [Summary](#summary)
+  - [Methods](#methods)
+      - [Data](#data)
+      - [Analysis](#analysis)
+  - [Results & Discussion](#results-discussion)
+  - [Results & Discussion](#results-discussion-1)
+  - [Reference](#reference)
 
 # Summary
 
@@ -18,10 +18,10 @@ regression model using a popular type of regularized linear regression
 model Ridge. The model can use the physical measurements (Sex, Length,
 Diameter, Height, Whole weight, etc.) to predict the age of abalone. Our
 final Ridge model can predict age in a decent accuracy on an unseen test
-data set, with a *R*<sup>2</sup> score of 0.52 and a mean absolute
-percentage error (MAPE) of 13.71. However, considering the potential
-economic losses to the stakeholders (Cook and Gordon 2010), we recommend
-further improvement before it is put into the industry.
+data set, with a \(R^2\) score of 0.52 and a mean absolute percentage
+error (MAPE) of 13.71. However, considering the potential economic
+losses to the stakeholders (Cook and Gordon 2010), we recommend further
+improvement before it is put into the industry.
 
 # Methods
 
@@ -30,7 +30,7 @@ further improvement before it is put into the industry.
 The dataset used in this project comes from an original study “The
 Population Biology of Abalone (*Haliotis* species) in Tasmania. I.
 Blacklip Abalone (*H. rubra*) from the North Coast and Islands of Bass
-Strait,” created by Warwick J Nash, Tracy L Sellers, Simon R Talbot,
+Strait”, created by Warwick J Nash, Tracy L Sellers, Simon R Talbot,
 Andrew J Cawthorn and Wes B Ford (1994). It was sourced from the UCI
 Machine Learning Repository (Dua and Graff 2017) and can be found
 [here](http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/).
@@ -45,15 +45,15 @@ continuous values has been scaled. Please find the detailed information
 
 The Ridge model was used to build a regression model to predict abalone
 age based on the physical measures, which involve 1 categorical feature
-(“age”), and 7 numerical features (“Length,” “Diameter,” “Height,”
-“Whole weight,” “Shucked weight,” “Viscera weight,” and “Shell weight”).
-All features are contained in the original data set. The predicting
-target “age” is converted from the “rings” in the original data set by
-adding 1.5. Before fitting the model, we exclude 1 outlier with
-extremely large height, and apply a standard scale transformation on
-numerical features. The model parameter *a**l**p**h**a* was chosen using
-a randomized search on hyperparameters in 5-fold cross-validation, with
-*R*<sup>2</sup> as the evaluation metric.
+(“age”), and 7 numerical features (“Length”, “Diameter”, “Height”,
+“Whole weight”, “Shucked weight”, “Viscera weight”, and “Shell
+weight”). All features are contained in the original data set. The
+predicting target “age” is converted from the “rings” in the original
+data set by adding 1.5. Before fitting the model, we exclude 1 outlier
+with extremely large height, and apply a standard scale transformation
+on numerical features. The model parameter \(alpha\) was chosen using a
+randomized search on hyperparameters in 5-fold cross-validation, with
+\(R^2\) as the evaluation metric.
 
 The Python programming languages (Van Rossum and Drake 2009) and the
 following Python packages were used to perform the analysis: docopt
@@ -77,8 +77,11 @@ other.
 <div class="figure">
 
 <img src="../results/eda/corr_plot.png" alt="Figure 1. Correlation of All Abalone Numerical Column." width="100%" />
+
 <p class="caption">
+
 Figure 1. Correlation of All Abalone Numerical Column.
+
 </p>
 
 </div>
@@ -97,8 +100,11 @@ numerical values before fitting the model.
 <div class="figure">
 
 <img src="../results/eda/all_vs_age_dist.png" alt="Figure 2. Correlation of Abalone Age with Numerical Features." width="100%" />
+
 <p class="caption">
+
 Figure 2. Correlation of Abalone Age with Numerical Features.
+
 </p>
 
 </div>
@@ -112,8 +118,11 @@ feature is a good indicator to age.
 <div class="figure">
 
 <img src="../results/eda/sex_vs_age_violin.png" alt="Figure 3. Correlation of Abalone Age with Sex." width="50%" />
+
 <p class="caption">
+
 Figure 3. Correlation of Abalone Age with Sex.
+
 </p>
 
 </div>
@@ -127,31 +136,34 @@ all features as the model input.
 We chose to use Ridge model to solve the regression problem. To find the
 best hyperparameter, we randomly search within the defined search space
 of “alpha” using 5-fold cross-validation. The evaluation metric used in
-the cross-validation is *R*<sup>2</sup> score, which indicates the
-variation in the response variable around its mean. The best mean
-validate score is 0.54 where ‘alpha’ equals 1.
+the cross-validation is \(R^2\) score, which indicates the variation in
+the response variable around its mean. The best mean validate score is
+0.54 where ‘alpha’ equals 1.
 
 <div class="figure">
 
 <img src="../results/ml_model/hyperparam_tuning.png" alt="Figure 4. Results from 5-fold cross validation to choose alpha. R-squared was used as the metric as alpha was varied." width="50%" />
+
 <p class="caption">
+
 Figure 4. Results from 5-fold cross validation to choose alpha.
 R-squared was used as the metric as alpha was varied.
+
 </p>
 
 </div>
 
-The final prediction model has a *R*<sup>2</sup> score of 0.52 and a
-mean absolute percentage error (MAPE) of 13.71. Our *R*<sup>2</sup>
-score is not good enough compare to the perfect *R*<sup>2</sup> score of
-1, which means our prediction has a relatively large variation in the
-response variable around its mean. Considering the MAPE score, the model
-has around 13.71% errors on the age prediction. In terms of MAPE score,
-the model performs good based on the test data. However, this model is
-not good enough to implement in industry or other fields.
+The final prediction model has a \(R^2\) score of 0.52 and a mean
+absolute percentage error (MAPE) of 13.71. Our \(R^2\) score is not good
+enough compare to the perfect \(R^2\) score of 1, which means our
+prediction has a relatively large variation in the response variable
+around its mean. Considering the MAPE score, the model has around 13.71%
+errors on the age prediction. In terms of MAPE score, the model performs
+good based on the test data. However, this model is not good enough to
+implement in industry or other fields.
 
 |       | mape\_error | r\_squared\_score |
-|:------|------------:|------------------:|
+| :---- | ----------: | ----------------: |
 | Ridge |    13.71356 |         0.5193807 |
 
 Table 1. Model Performance on Test Data
@@ -170,9 +182,9 @@ better fit.
 
 # Reference
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references">
 
-<div id="ref-reticulate" class="csl-entry">
+<div id="ref-reticulate">
 
 Allaire, JJ, Kevin Ushey, Yuan Tang, and Dirk Eddelbuettel. 2017.
 *Reticulate: R Interface to Python*.
@@ -180,15 +192,15 @@ Allaire, JJ, Kevin Ushey, Yuan Tang, and Dirk Eddelbuettel. 2017.
 
 </div>
 
-<div id="ref-abalone" class="csl-entry">
+<div id="ref-abalone">
 
-Cook, Peter A., and H. Roy Gordon. 2010. “<span class="nocase">World
-Abalone Supply, Markets, and Pricing</span>.” *Journal of Shellfish
-Research* 29 (3): 569–71. <https://doi.org/10.2983/035.029.0303>.
+Cook, Peter A., and H. Roy Gordon. 2010. “World Abalone Supply, Markets,
+and Pricing.” *Journal of Shellfish Research* 29 (3): 569–71.
+<https://doi.org/10.2983/035.029.0303>.
 
 </div>
 
-<div id="ref-Dua2019" class="csl-entry">
+<div id="ref-Dua2019">
 
 Dua, Dheeru, and Casey Graff. 2017. “UCI Machine Learning Repository.”
 University of California, Irvine, School of Information; Computer
@@ -196,21 +208,21 @@ Sciences. <http://archive.ics.uci.edu/ml>.
 
 </div>
 
-<div id="ref-hunter2007matplotlib" class="csl-entry">
+<div id="ref-hunter2007matplotlib">
 
-Hunter, John D. 2007. “Matplotlib: A 2d Graphics Environment.”
+Hunter, John D. 2007. “Matplotlib: A 2D Graphics Environment.”
 *Computing in Science & Engineering* 9 (3): 90–95.
 
 </div>
 
-<div id="ref-docoptpython" class="csl-entry">
+<div id="ref-docoptpython">
 
 Keleshev, Vladimir. 2014. *Docopt: Command-Line Interface Description
 Language*. <https://github.com/docopt/docopt>.
 
 </div>
 
-<div id="ref-kiers2007comparison" class="csl-entry">
+<div id="ref-kiers2007comparison">
 
 Kiers, Henk AL, and Age K Smilde. 2007. “A Comparison of Various Methods
 for Multivariate Regression with Highly Collinear Variables.”
@@ -218,7 +230,7 @@ for Multivariate Regression with Highly Collinear Variables.”
 
 </div>
 
-<div id="ref-pandas" class="csl-entry">
+<div id="ref-pandas">
 
 McKinney, Wes, and others. 2010. “Data Structures for Statistical
 Computing in Python.” In *Proceedings of the 9th Python in Science
@@ -226,23 +238,23 @@ Conference*, 445:51–56. Austin, TX.
 
 </div>
 
-<div id="ref-numpy" class="csl-entry">
+<div id="ref-numpy">
 
-Oliphant, Travis E. 2006. *A Guide to NumPy*. Vol. 1. Trelgol Publishing
+Oliphant, Travis E. 2006. *A Guide to Numpy*. Vol. 1. Trelgol Publishing
 USA.
 
 </div>
 
-<div id="ref-sklearn" class="csl-entry">
+<div id="ref-sklearn">
 
 Pedregosa, Fabian, Gaël Varoquaux, Alexandre Gramfort, Vincent Michel,
 Bertrand Thirion, Olivier Grisel, Mathieu Blondel, et al. 2011.
-“Scikit-Learn: Machine Learning in Python.” *Journal of Machine Learning
-Research* 12 (Oct): 2825–30.
+“Scikit-Learn: Machine Learning in Python.” *Journal of Machine
+Learning Research* 12 (Oct): 2825–30.
 
 </div>
 
-<div id="ref-R" class="csl-entry">
+<div id="ref-R">
 
 R Core Team. 2019. *R: A Language and Environment for Statistical
 Computing*. Vienna, Austria: R Foundation for Statistical Computing.
@@ -250,30 +262,30 @@ Computing*. Vienna, Austria: R Foundation for Statistical Computing.
 
 </div>
 
-<div id="ref-pickle" class="csl-entry">
+<div id="ref-pickle">
 
 Van Rossum, Guido. 2020. *The Python Library Reference, Release 3.8.2*.
 Python Software Foundation.
 
 </div>
 
-<div id="ref-Python" class="csl-entry">
+<div id="ref-Python">
 
 Van Rossum, Guido, and Fred L. Drake. 2009. *Python 3 Reference Manual*.
 Scotts Valley, CA: CreateSpace.
 
 </div>
 
-<div id="ref-seaborn" class="csl-entry">
+<div id="ref-seaborn">
 
 Waskom, Michael, Olga Botvinnik, Drew O’Kane, Paul Hobson, Saulius
 Lukauskas, David C Gemperline, Tom Augspurger, et al. 2017.
-*Mwaskom/Seaborn: V0.8.1 (september 2017)* (version v0.8.1). Zenodo.
+*Mwaskom/Seaborn: V0.8.1 (September 2017)* (version v0.8.1). Zenodo.
 <https://doi.org/10.5281/zenodo.883859>.
 
 </div>
 
-<div id="ref-knitr" class="csl-entry">
+<div id="ref-knitr">
 
 Xie, Yihui. 2014. “Knitr: A Comprehensive Tool for Reproducible Research
 in R.” In *Implementing Reproducible Computational Research*, edited by
