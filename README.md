@@ -32,7 +32,7 @@ To replicate the analysis,
    `docker pull chuangw/abalone_age_prediction:latest`
 5. To run this analysis using Docker, type the following (filling in PATH_ON_YOUR_COMPUTER with the absolute path to the root of this project on your computer).   
    `docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/rstudio/Abalone_Age_Prediction abalone_age_predictor make -C /home/rstudio/Abalone_Age_Prediction all`
-6. To clean up the analysis, type:
+6. To clean up the analysis, type:    
    `docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/rstudio/Abalone_Age_Prediction abalone_age_predictor make -C /home/rstudio/Abalone_Age_Prediction clean`
 
 ### **Flow Chart and Project Organization**
