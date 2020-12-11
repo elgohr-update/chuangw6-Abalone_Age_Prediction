@@ -28,7 +28,7 @@ To replicate the analysis,
 1. Clone this GitHub repository.  
 2. Navigate to the root directory of this repository.
 3. Make sure Docker is installed in your device. (You can install Docker [here](https://docs.docker.com/get-docker/).)
-4. Pull the docker image which contains the software and libraries/packages needed to run abalone age prediction Machine Learning (ML) pipeline.   
+4. Pull the [docker image](https://hub.docker.com/r/chuangw/abalone_age_prediction) which contains the software and libraries/packages needed to run abalone age prediction Machine Learning (ML) pipeline.   
    > `docker pull chuangw/abalone_age_prediction:latest`
 5. To run this analysis using Docker, type the following (filling in PATH_ON_YOUR_COMPUTER with the absolute path to the root of this project on your computer).   
    > `docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/rstudio/Abalone_Age_Prediction chuangw/abalone_age_predictor make -C /home/rstudio/Abalone_Age_Prediction all`
