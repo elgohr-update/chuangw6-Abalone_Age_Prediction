@@ -1,4 +1,7 @@
 # Docker file for Abalone age prediction project
+# Every change in the dockerfile will automatically trigger the automated builds
+# of the Docker image, and to tag it in the GitHub Action workflow.
+# 
 # Author: Chuang Wang, Huanhuan Li, Charles Suresh
 # -------------------
 # Date: Dec 11 2020
